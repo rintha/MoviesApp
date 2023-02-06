@@ -8,11 +8,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const cancelRetryHandler = () => {
+    setError(error.message);
+  };
+
   async function fetchMoviesHandler() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
+      const response = await fetch("https://swapi.dev/api/film/");
 
       if (!response.ok) {
         throw new Error("Something went wrong...Retrying");
@@ -48,6 +52,14 @@ function App() {
     content = <p>Loading...</p>;
   }
 
+  if (error) {
+    content = (
+      <div>
+        <p> {error} </p>
+        <button onClick={cancelRetryHandler}> Cancel Retry </button>
+      </div>
+    );
+  }
   return (
     <React.Fragment>
       <section>
