@@ -18,3 +18,9 @@
   margin: 0;
   font-size: 1rem;
 }
+
+.btn1 {
+  background-color:  #bbb1c9;
+  color: black;
+  float: inline-end;
+}
